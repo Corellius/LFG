@@ -1,0 +1,39 @@
+<template name="playersPage">
+	<div class="container">
+		<header>
+			<h1>Registered Adventurers</h1>
+		</header>
+		
+		<ul>
+			{{#each players}}
+				{{> player}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+
+
+
+<template name="player">
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+    <p><strong>{{username}}</strong>
+	<br>Character Name: {{characterName}}
+	<br>Preferred RPG(s): {{rpgs}}{{#if system}},{{system}}{{/if}}
+	<br> Availability: {{availability}} 
+	<br> Player Type: {{type}} 
+	{{#if isPublicEmail}}
+		<br> Email: {{email}}
+	{{/if}}
+	{{#if currentUser}}
+		{{#if isntSelf}}
+			<form class ="send-message">	
+				<textarea name="message" rows="3" cols="65" placeholder="Send a message to this player!"></textarea>
+				<br>
+				<input type="submit" value="Send Message"/>
+			</form>
+		{{/if}}
+	{{/if}}
+	</p>
+  </li>
+</template>

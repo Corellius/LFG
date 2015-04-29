@@ -1,0 +1,31 @@
+<template name="inboxPage">
+	<div class="container">
+		<header>
+			<h1>My Inbox</h1>
+		</header>
+		
+		<ul><strong>Your Messages ({{messageCount}})</strong></ul>
+		<ul>
+			{{#each messages}}
+				{{> message}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+
+<template name="message">
+	{{#if currentUser}}
+		<li>
+			<button class="delete">&times;</button>
+			From: {{senderName}}
+			<br>Received: {{createdAt}}
+			<br>Message: {{message}}
+			<form class ="reply-message">	
+				<textarea name="reply" rows="3" cols="65" placeholder="Send a reply to this player!"></textarea>
+				<br>
+				<input type="submit" value="Send Reply"/>
+			</form>
+		</li>
+	{{/if}}
+</template>

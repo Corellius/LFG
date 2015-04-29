@@ -1,0 +1,53 @@
+<head>
+  <title>Looking for Group</title>
+</head>
+
+<body>
+	<header>
+		<h1><a href="/">UMW Looking For Group</a></h1> 
+		{{> loginButtons}}
+		<p>
+			<a href="/playersPage">Adventurers</a> | 
+			<a href="/groupsPage">Adventurer Parties</a> | 
+			<a href="/map2">Map</a> | 
+			<!--a href="/map">Map</a--> 
+			{{#if currentUser}}
+				<a href="/suggestionsPage">Suggestions</a>
+				| <a href="/myGroupsPage">My Parties</a>
+				<div class = "personal">
+					<a href="/inboxPage">Messages ({{messagesCount}})</a> |
+					<a href="/myAccount">My Account</a>
+				</div>
+				
+			{{/if}}
+			
+		</p>
+		
+
+	</header>
+</body>
+
+
+
+<template name="home">
+	<div class = "container">
+		<li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+			<p><strong><h1>Welcome to the UMW Looking for Group webpage!</h1></strong>
+			<br>
+			<br>This is a site where you can find fellow RPG enthusiasts looking to form a party and set out on adventure.
+			It is currently a work in progress, so please bear with us as we continue to add features and improve the utility of the site in general.
+			<br> If you haven't already, sign in with a Google account and then update your personal information on the "My Account" page!
+			</p>
+			<p><strong>News</strong>
+			<br>
+			4/26/2015: The site is now active with version 0.2! You can now successfully update your account details, create groups, and add other players to said groups!
+			Privacy settings have also been added for groups and now work correctly, allowing only fellow group members and yourself to see the group.
+			<br><br>
+			4/28/2015: Version 0.7 is now up and running. Many features have been added since the last news update, with group leaders now able to customize their party's settings,
+			 add and remove register users, and replace themselves with another member as leader. The account details page has been greatly improved. But our three biggest new features
+			 have yet to be mentioned: the implementation of a comments system for groups, a private messaging system with other players, and a suggestions page that lists players with
+			 high, moderate, and low compatibility with your own settings.
+			</p>
+		</li>
+	</div>
+</template>

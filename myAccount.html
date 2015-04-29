@@ -1,0 +1,66 @@
+<template name="accountPage">
+	<div class="container">
+		<header>
+			<h1>My Account Page</h1><br>
+			<span class="text"><strong>Update Your Personal Information</strong> 	
+				{{#each users}}
+					<form class="update-info">
+						<b>Character Name:</b>
+						<input type="text" name="nickname" value={{characterName}} /><br><br>
+						<b> Preferred RPG(s): </b>
+						<br><input type="checkbox" name="dnd" checked={{rpgsCheck.[0]}} value="D&D 3.5" />  D&D 3.5 
+						<br><input type="checkbox" name="saga" checked={{rpgsCheck.[1]}} value="Star Wars Saga Edition" />  Star Wars Saga Edition 
+						<br><input type="checkbox" name="dnd4" checked={{rpgsCheck.[2]}} value="D&D 4.0" />  D&D 4.0 
+						<br><input type="checkbox" name="dnd5" checked={{rpgsCheck.[3]}} value="D&D 5th Edition" />  D&D 5th Edition 
+						<br><input type="checkbox" name="path" checked={{rpgsCheck.[4]}} value="Pathfinder" />  Pathfinder
+						<br><input type="checkbox" name="shadow" checked={{rpgsCheck.[5]}} value="Shadowrun" />  Shadowrun 
+						<br><input type="checkbox" name="spirit" checked={{rpgsCheck.[6]}} value="Spirit of the Century" />  Spirit of the Century 
+						<br><input type="checkbox" name="gurps" checked={{rpgsCheck.[7]}} value="GURPS" />  GURPS 
+						<br><input type="checkbox" name="call" checked={{rpgsCheck.[8]}} value="Call of Cthulhu" />  Call of Cthulhu 
+						<br>Others: <input type="text" name="other" value={{system}} /><br><br>
+						<b>Available on: </b>
+						<br><input type="checkbox" name= "monday" checked={{daysCheck.[0]}} value="Monday" />  Monday 
+						<br><input type="checkbox" name= "tuesday" checked={{daysCheck.[1]}} value="Tuesday" />  Tuesday 
+						<br><input type="checkbox" name= "wednesday" checked={{daysCheck.[2]}} value="Wednesday" />  Wednesday 
+						<br><input type="checkbox" name= "thursday" checked={{daysCheck.[3]}} value="Thursday" />  Thursday 
+						<br><input type="checkbox" name= "friday" checked={{daysCheck.[4]}} value="Friday" />  Friday 
+						<br><input type="checkbox" name= "saturday" checked={{daysCheck.[5]}} value="Saturday" />  Saturday 
+						<br><input type="checkbox" name= "sunday" checked={{daysCheck.[6]}} value="Sunday" />  Sunday 
+						<br><br><b>Player/DM/Either: </b>
+						<select name="type" selected={{type}}>
+							<option selected="selected" disabled="disabled">{{type}}</option>
+							<option value="Player">Player</option>
+							<option value="DM">DM</option>
+							<option value="Either">Either</option>
+						</select>
+						<br><br><input type="checkbox" name="chooseemail" checked={{publicEmail}} /> <strong>Display my email address to other users.</strong>
+						<br><br><input type="submit" value = "Update Account" />
+					</form>
+				{{/each}}
+			</span>
+		</header>
+		
+		<ul>
+			{{#each users}}
+				{{> user}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+
+<template name="user">
+	<li>
+		<strong>How Your Adventurer Account Will Appear to Others:</strong>
+		<br><br><strong>{{username}}</strong>
+		<br>Character Name: {{characterName}}
+		<br>Preferred RPGs: {{rpgs}}, {{system}}
+		<br> Availability: {{availability}} 
+		<br> Player Type: {{type}} 
+		{{#if isPublicEmail}}
+			<br> Email: {{email}}
+		{{/if}}
+		
+	</li>
+</template>
+

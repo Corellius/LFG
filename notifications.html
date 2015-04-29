@@ -1,0 +1,24 @@
+<template name = "notificationsPage">
+	<div class="container">
+		<header>
+			<h1>My Notifications ({{notificationsCount}})</h1>
+		</header>
+		
+		<ul>
+			{{#each notifications}}
+				{{> notification}}
+			{{/each}}
+		</ul>
+	</div>
+
+
+</template>
+
+<template name="notification">
+	{{#if currentUser}}
+		<li>
+			<button class="delete">&times;</button>
+			{{senderName}} is requesting to be made a member of {{group}}.
+		</li>
+	{{/if}}
+</template>

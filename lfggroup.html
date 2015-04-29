@@ -1,0 +1,26 @@
+<template name="groupsPage">
+  <div class="container">
+    <header>
+      <h1>Adventurer Parties ({{openCount}})</h1>
+    </header>
+
+    <ul>
+      {{#each groups}}
+        {{> group}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="group">
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+
+    <strong><h1>{{text}}</h1></strong> 
+		<br> <b>Leader:</b> {{username}}
+		<br> <b>Members:</b> {{members}}
+		<br><b>Meets on:</b> {{availability}}<br>
+		<b>Is currently playing:</b> {{rpgs}}{{#if others}},{{others}}{{/if}}
+	
+	
+  </li>
+</template>

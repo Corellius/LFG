@@ -1,0 +1,136 @@
+<template name="myGroupsPage">
+  <div class="container">
+    <header>
+      <h1>My Parties</h1>
+	  {{#if currentUser}}
+	  <br><strong>Create a new Party:</strong>
+		<form class="new-group">
+			<input type="text" name="text" placeholder="Enter party name here and hit 'Enter' on your keyboard." />
+		</form>
+	  {{/if}}
+    </header>
+
+    <ul>
+      {{#each myGroups}}
+        {{> myGroup}}
+      {{/each}}
+    </ul>
+  </div>
+
+
+
+
+
+
+</template>
+
+<template name="myGroup">
+	<li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+		
+		{{#if isLeader}}
+			<button class="delete">&times;</button>
+		{{/if}}
+
+		{{#if isLeader}}
+			<button class="toggle-private">
+				{{#if private}}
+					Private
+				{{else}}
+					Public
+				{{/if}}
+			</button>
+		{{/if}}
+		
+		<span class="text"><h1><strong>{{text}}</strong></h1>
+			<br> <strong>Leader:</strong> {{username}} 
+			{{#if isPublicEmail}}
+				- {{email}}
+			{{/if}}
+			<br> <strong>Members: </strong>
+			{{members}}
+			<br> <strong>Meets on: </strong>
+			{{availability}}
+			<br> <strong>Is currently playing: </strong>
+			{{rpgs}}{{#if others}},{{others}}{{/if}}
+			{{#if isLeader}}
+				<br><br><strong>Leader Actions</strong>
+				<br>Add a player to your party:
+				<form class="new-member">
+					<input type="text" name="member" placeholder="Enter player's name: " />
+					<input type="submit" value = "Add to Party" />
+				</form>
+				<br>Remove a player from your party:
+				<form class="remove-member">
+					<input type="text" name="removemember" placeholder="Enter member's name: " />
+					<input type="submit" value = "Remove from Party" />
+				</form>
+				<br>Make another member the party leader (this will demote you to member status):
+				<form class="promote-member">
+					<input type="text" name="promotemember" placeholder="Enter member's name: " />
+					<input type="submit" value = "Make Party Leader" />
+				</form>
+				<form class="update-meetings">
+					<br>
+					Change meeting times: 
+					<br><input type="checkbox" name= "monday" checked={{daysCheck.[0]}} value="Monday" />  Monday
+					<br><input type="checkbox" name= "tuesday" checked={{daysCheck.[1]}} value="Tuesday" />  Tuesday
+					<br><input type="checkbox" name= "wednesday" checked={{daysCheck.[2]}} value="Wednesday" />  Wednesday
+					<br><input type="checkbox" name= "thursday" checked={{daysCheck.[3]}} value="Thursday" />  Thursday
+					<br><input type="checkbox" name= "friday" checked={{daysCheck.[4]}} value="Friday" />  Friday
+					<br><input type="checkbox" name= "saturday" checked={{daysCheck.[5]}} value="Saturday" />  Saturday
+					<br><input type="checkbox" name= "sunday" checked={{daysCheck.[6]}} value="Sunday" />  Sunday
+					<br><input type="submit" value = "Update Party Meeting Times" />
+				</form>
+				<form class="update-rpgs">
+					<br>Which RPG(s) is the Party playing:
+					<br><input type="checkbox" name="dnd" checked={{rpgsCheck.[0]}} value="D&D 3.5" />  D&D 3.5 
+					<br><input type="checkbox" name="saga" checked={{rpgsCheck.[1]}} value="Star Wars Saga Edition" />  Star Wars Saga Edition 
+					<br><input type="checkbox" name="dnd4" checked={{rpgsCheck.[2]}} value="D&D 4.0" />  D&D 4.0 
+					<br><input type="checkbox" name="dnd5" checked={{rpgsCheck.[3]}} value="D&D 5th Edition" />  D&D 5th Edition 
+					<br><input type="checkbox" name="path" checked={{rpgsCheck.[4]}} value="Pathfinder" />  Pathfinder
+					<br><input type="checkbox" name="shadow" checked={{rpgsCheck.[5]}} value="Shadowrun" />  Shadowrun 
+					<br><input type="checkbox" name="spirit" checked={{rpgsCheck.[6]}} value="Spirit of the Century" />  Spirit of the Century 
+					<br><input type="checkbox" name="gurps" checked={{rpgsCheck.[7]}} value="GURPS" />  GURPS 
+					<br><input type="checkbox" name="call" checked={{rpgsCheck.[8]}} value="Call of Cthulhu" />  Call of Cthulhu 
+					<br>Others: <input type="text" name="other" value={{others}} />
+					<br><input type="submit" value = "Update Party RPG(s)" />
+				</form>
+			{{/if}}
+			
+			{{#if isMember}}
+				{{#if isntLeader}}
+					<br><br><strong>Member Actions</strong>
+					<form class="leave-party">
+						Leave the Party (check the box to confirm): <input type="checkbox" name="leave" />
+						<input type="submit" value = "Leave the Party" />
+					</form>
+				{{/if}}
+			{{/if}}
+			{{#if isLeader}}
+				<br>{{> hangoutPage}}
+			{{/if}}
+			
+			<br><br><strong>Post a Comment</strong>
+			<form class ="post-comment">	
+				<textarea name="post" rows="3" cols="65" placeholder="Post a comment for all group members to see!"></textarea>
+				<br>
+				<input type="submit" value="Post Comment"/>
+			</form>
+			<br><br><strong>Comments Thread ({{commentCount}})</strong>
+				{{#each comments}}
+					{{> comment}}
+				{{/each}}
+		
+		</span>
+	</li>
+</template>
+
+<template name="comment">
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+	{{#if isLeaderOrPoster}}
+		<button class="delete">&times;</button>
+	{{/if}}
+    <strong>{{posterName}}</strong> posted on {{createdAt}}:
+	<br>{{comment}}
+  </li>
+</template>

@@ -1,0 +1,165 @@
+<template name="suggestionsPage">
+	<div class="container">
+		<header>
+			<h1>Suggestions</h1>
+		</header>
+		<li>
+			<p><strong><h1>Players with High Compatibility (Both Availability and RPGs)</h1></strong><br>
+			{{#each highCompats}}
+				{{> highCompat}}
+			{{/each}}
+			</p><br>
+			
+			<p><strong><h1>Players with Moderate Compatibility (Only Availability)</h1></strong><br>
+			{{#each modCompats}}
+				{{> modCompat}}
+			{{/each}}
+			</p><br>
+			
+			<p><strong><h1>Players with Low Compatibility (Only RPGs)</h1></strong><br>
+			{{#each lowCompats}}
+				{{> lowCompat}}
+			{{/each}}
+			</p><br>
+			
+			<p><strong><h1>Groups with High Compatibility (Both Meeting Times and RPGs)</h1></strong><br>
+			{{#each groupCompats}}
+				{{> groupCompat}}
+			{{/each}}
+			</p><br>
+			
+			<p><strong><h1>Groups with Moderate Compatibility (Only Meeting Times)</h1></strong><br>
+			{{#each groupModCompats}}
+				{{> groupModCompat}}
+			{{/each}}
+			</p><br>
+			
+			<p><strong><h1>Groups with Low Compatibility (Only RPGs)</h1></strong><br>
+			{{#each groupLowCompats}}
+				{{> groupLowCompat}}
+			{{/each}}
+			</p>
+			
+		</li>
+	</div>
+</template>
+		
+		
+		
+		
+		
+		
+		
+<template name="highCompat">
+	{{#if isntSelf}}
+		<p><strong>{{username}}</strong>
+		<br>Character Name: {{characterName}}
+		<br>Preferred RPG(s): {{rpgs}}{{#if system}},{{system}}{{/if}}
+		<br> Availability: {{availability}} 
+		<br> Player Type: {{type}} 
+		{{#if isPublicEmail}}
+			<br> Email: {{email}}
+		{{/if}}
+		<br> 
+		<form class ="send-message">	
+			<textarea name="message" rows="3" cols="65" placeholder="Send a message to this player!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>
+
+<template name="modCompat">
+	{{#if isntSelf}}
+		<p><strong>{{username}}</strong>
+		<br>Character Name: {{characterName}}
+		<br>Preferred RPG(s): {{rpgs}}{{#if system}},{{system}}{{/if}}
+		<br> Availability: {{availability}} 
+		<br> Player Type: {{type}} 
+		{{#if isPublicEmail}}
+			<br> Email: {{email}}
+		{{/if}}
+		<br> 
+		<form class ="send-message">	
+			<textarea name="message" rows="3" cols="65" placeholder="Send a message to this player!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>
+
+<template name="lowCompat">
+	{{#if isntSelf}}
+		<p><strong>{{username}}</strong>
+		<br>Character Name: {{characterName}}
+		<br>Preferred RPG(s): {{rpgs}}{{#if system}},{{system}}{{/if}}
+		<br> Availability: {{availability}} 
+		<br> Player Type: {{type}} 
+		{{#if isPublicEmail}}
+			<br> Email: {{email}}
+		{{/if}}
+		<br> 
+		<form class ="send-message">	
+			<textarea name="message" rows="3" cols="65" placeholder="Send a message to this player!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>
+
+<template name="groupCompat">
+	{{#if isntMember}}
+		<p><strong>{{text}}</strong>
+		<br><strong>{{characterName}}</strong>
+		<br>Leader: {{username}}
+		<br>Members: {{members}}
+		<br>Currently Playing RPG(s): {{rpgs}}{{#if others}},{{others}}{{/if}}
+		<br> Meets on: {{availability}} 
+		<br> 
+		<form class ="send-message-leader">	
+			<textarea name="messageleader" rows="3" cols="65" placeholder="Send a message to the leader of this group!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>
+
+<template name="groupModCompat">
+	{{#if isntMember}}
+		<p><strong>{{text}}</strong>
+		<br><strong>{{characterName}}</strong>
+		<br>Leader: {{username}}
+		<br>Members: {{members}}
+		<br>Currently Playing RPG(s): {{rpgs}}{{#if others}},{{others}}{{/if}}
+		<br> Meets on: {{availability}} 
+		<br> 
+		<form class ="send-message-leader">	
+			<textarea name="messageleader" rows="3" cols="65" placeholder="Send a message to the leader of this group!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>
+
+<template name="groupLowCompat">
+	{{#if isntMember}}
+		<p><strong>{{text}}</strong>
+		<br><strong>{{characterName}}</strong>
+		<br>Leader: {{username}}
+		<br>Members: {{members}}
+		<br>Currently Playing RPG(s): {{rpgs}}{{#if others}},{{others}}{{/if}}
+		<br> Meets on: {{availability}} 
+		<br> 
+		<form class ="send-message-leader">	
+			<textarea name="messageleader" rows="3" cols="65" placeholder="Send a message to the leader of this group!"></textarea>
+			<br>
+			<input type="submit" value="Send Message"/>
+		</form>
+		</p>
+	{{/if}}
+</template>

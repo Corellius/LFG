@@ -1,0 +1,33 @@
+<template name ="hangoutPage2">
+	<script>
+		<title>Hangout button demo: Inviting people</title>
+		<link rel="canonical" href="http://www.example.com" />
+	</script>
+	<body>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<g:hangout render="createhangout"
+			invites="[{ id : '1234', invite_type : 'PROFILE' },
+					  { id : 'foo@example.com', invite_type : 'EMAIL' }]">
+		</g:hangout>
+	</body>
+</template>
+
+
+
+
+<template name="hangoutPage">
+	<div class="container">
+		<br>
+		
+		<body>
+			<a href="https://plus.google.com/hangouts/_?gid=468596479238" style="text-decoration:none;">
+  			<img src="https://developers.google.com/+/hangouts/images/start_hangout_button_wide.png"
+   			alt="Start a Hangout"
+    		style="border:0;width:175px;height:30px;"/>
+			</a>
+		</body>
+	</div>
+
+</template>
+
+

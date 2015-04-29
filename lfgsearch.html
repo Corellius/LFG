@@ -1,0 +1,21 @@
+<template name = "searchPage">
+	<div class="container">
+		<header>
+			<h1>Search for a Player</h1>
+			<form class="search-player">
+				<input type="text" name="searchtext" placeholder="Enter player information..." />
+			</form>
+		</header>
+		
+		<ul>
+			{{#each searches}}
+				{{> search}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="search">
+	<p><strong>{{characterName}}</strong></p>
+	<p>RPGs: {{rpgs}} <br> Availability: {{availability}} <br> Player Type: {{type}} <br> {{username}} : {{email}}</p>
+</template>
